@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">BestPrototype</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_camera">camera</string>
-    <string name="title_activity_profile">Profile</string>
-</resources>
