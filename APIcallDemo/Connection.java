@@ -1,85 +1,122 @@
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
+
 import java.util.Scanner;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-import org.json.simple.JSONArray; 
-import org.json.simple.JSONObject; 
-import org.json.simple.parser.*;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 
-/*import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;*/
+import java.net.URL;
+import java.net.HttpURLConnection;
+
+import java.io.BufferedReader;
 
 public class Connection {
 	
-	public static void main(String[] args) throws IOException {
-	    //System.out.println("Hello world");
-		MyGETRequest();
+	private static HttpURLConnection connection;
+
+	public static void main(String[] args) {
+		
+	
+		BufferedReader reader;
+		String line;
+		
+		StringBuffer responseContent = new StringBuffer();
+		try {
+			
+		//URL url = new URL("https://jsonplaceholder.typicode.com/albums");
+		URL url = new URL("https://world.openfoodfacts.org/api/v0/product/8715700407760.json");
+		
+		connection = (HttpURLConnection)url.openConnection();
+		
+		connection.setRequestMethod("GET");
+		connection.setConnectTimeout(5000);
+		connection.setReadTimeout(5000);
+		
+		int status = connection.getResponseCode();
+		 
+		System.out.print(status);
+		
+		//Reader reads the error message
+		if(status > 299) {
+			
+			reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+			
+			while((line = reader.readLine()) != null) {
+				responseContent.append(line);
+			}
+			
+			reader.close();
+		}
+		
+		//If connection is successful
+		
+		else {
+			
+			reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			
+			while((line = reader.readLine()) != null) {
+				responseContent.append(line);
+			}
+			
+			reader.close();
+			
+		}
+			
+		//System.out.println(responseContent.toString());
+		
+		parse(responseContent.toString());
+		
+		
+		}catch(MalformedURLException e) {
+			e.printStackTrace();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}finally {
+			connection.disconnect();
+		}
+		
+		//JSONObject obj = new JSONObject();
+		
 	}
 	
-	public static void MyGETRequest() throws IOException {
-	    //URL urlForGetRequest = new URL("https://api.nal.usda.gov/fdc/v1/354148?api_key=BmpQTRpIIENgiaYN80vTCvm1cqieFWewKHEYvLHA");
-		URL url = new URL("https://api.nal.usda.gov/fdc/v1/354148?api_key=BmpQTRpIIENgiaYN80vTCvm1cqieFWewKHEYvLHA");
-	    String readLine = null;
-	    //static String json = "...";
-	    //JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
-	    
-	    HttpURLConnection conection = (HttpURLConnection) url.openConnection();
-	    conection.setRequestMethod("GET");
-	    //conection.setRequestProperty("userId", "a1bcdef"); // set userId its a sample here
-	    int responsecode = conection.getResponseCode();
-	    String inline = null;
-	    
-	    /*if(responsecode != 200)
-	    	throw new RuntimeException();
-	    	else
-	    	{
-	    		Scanner sc = new Scanner(url.openStream());
-	    		while(sc.hasNext())
-	    		{
-	    			inline+=sc.nextLine();
-	    		}
-	    		System.out.println("\n String data: ");
-	    		System.out.println(inline);
-	    		sc.close();
-	    	}
-	    
-	    
-	    JSONParser parse = new JSONParser();   
-	    JSONObject jobj = (JSONObject)parse.parse(inline);
-	    //JSONObject jobj = new JSONobject
-	   
-	    
-	    JSONArray jsonarr_1 = (JSONArray) jobj.get(“ingredients”); */
-	    
-	    if (responsecode == HttpURLConnection.HTTP_OK) {
-	        BufferedReader in = new BufferedReader(
-	            new InputStreamReader(conection.getInputStream()));
-	        StringBuffer response = new StringBuffer();
-	        while ((readLine = in .readLine()) != null) {
-	            response.append(readLine);
-	            
-	        } in .close();
-	        // print result
-	        System.out.println("JSON String Result " + response.toString());
-	        //contents = response.toString();
-	        //GetAndPost.POSTRequest(response.toString());
-	    } 
-	    else {
-	        System.out.println("GET NOT WORKED");
-	    }	    
+	/*public static String parse (String responseBody) {
+		
+		JSONArray albums = new JSONArray(responseBody);
+		
+		for(int i = 0; i< albums.length();i++) {
+			JSONObject album = albums.getJSONObject(i);
+			int id = album.getInt("id");
+			int userID = album.getInt("userId");
+			String title = album.getString("title");
+			
+			System.out.println("ID: " + id + " User ID: " + userID + " Title: " + title);
+		}
+		
+		return null;
+		
+	}*/
+	
+	
+	public static String parse (String responseBody) {
+		
+		JSONArray food = new JSONArray(responseBody);
+		
+		for(int i = 0; i< food.length();i++) {
+			JSONObject album = food.getJSONObject(i);
+			
+			String ingredients = album.getString("ingredients");
+			
+			System.out.println("Ingredients: "  + ingredients);
+		}
+		
+		
+		//System.out.println("In parse");
+		return null;
+		
 	}
+	
+
 }
