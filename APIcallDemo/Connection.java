@@ -13,6 +13,11 @@ import java.net.HttpURLConnection;
 
 import java.io.BufferedReader;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+//import com.journaldev.json.model.Address;
+//import com.journaldev.json.model.Employee;
+
 public class Connection {
 	
 	private static HttpURLConnection connection;
@@ -37,7 +42,7 @@ public class Connection {
 		
 		int status = connection.getResponseCode();
 		 
-		System.out.print(status);
+		//System.out.print(status);
 		
 		//Reader reads the error message
 		if(status > 299) {
@@ -64,8 +69,6 @@ public class Connection {
 			reader.close();
 			
 		}
-			
-		//System.out.println(responseContent.toString());
 		
 		parse(responseContent.toString());
 		
@@ -77,8 +80,6 @@ public class Connection {
 		}finally {
 			connection.disconnect();
 		}
-		
-		//JSONObject obj = new JSONObject();
 		
 	}
 	
@@ -102,18 +103,22 @@ public class Connection {
 	
 	public static String parse (String responseBody) {
 		
-		JSONArray food = new JSONArray(responseBody);
 		
-		for(int i = 0; i< food.length();i++) {
-			JSONObject album = food.getJSONObject(i);
-			
-			String ingredients = album.getString("ingredients");
-			
-			System.out.println("Ingredients: "  + ingredients);
-		}
+		System.out.println("In parse");
+		
+		JSONObject food = new JSONObject(responseBody);
 		
 		
-		//System.out.println("In parse");
+		
+		//System.out.println(food);
+		
+		int id = food.getInt("code");	
+		System.out.println("ID: "  + id);
+		
+		
+		
+		
+		
 		return null;
 		
 	}
