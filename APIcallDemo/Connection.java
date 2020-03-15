@@ -32,13 +32,13 @@ public class Connection {
 		try {
 			
 		//URL url = new URL("https://jsonplaceholder.typicode.com/albums");
-		URL url = new URL("https://world.openfoodfacts.org/api/v0/product/8715700407760.json");
+		URL url = new URL("https://world.openfoodfacts.org/api/v0/product/737628064502.json");
 		
 		connection = (HttpURLConnection)url.openConnection();
 		
 		connection.setRequestMethod("GET");
-		connection.setConnectTimeout(5000);
-		connection.setReadTimeout(5000);
+		connection.setConnectTimeout(10000);
+		connection.setReadTimeout(10000);
 		
 		int status = connection.getResponseCode();
 		 
@@ -70,6 +70,7 @@ public class Connection {
 			
 		}
 		
+		//System.out.println(responseContent.toString());
 		parse(responseContent.toString());
 		
 		
@@ -115,8 +116,18 @@ public class Connection {
 		int id = food.getInt("code");	
 		System.out.println("ID: "  + id);
 		
+		System.out.println("\n\nIngredients \n");
+		String ingredients = food.getJSONObject("product").getString("ingredients_text_debug");
+		System.out.println(ingredients);
+		//System.out.println(food.getJSONObject("product").getString("ingredients_text_debug"));
 		
 		
+		//JSONObject product = new JSONObject(food.getJSONObject("product"));
+		//System.out.println(product.);
+		
+		//System.out.println(product.get("image_ingredients_url"));
+		//String x = product.getString("image_ingredients_url");
+		//System.out.println("ID: "  + x);
 		
 		
 		return null;
