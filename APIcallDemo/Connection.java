@@ -78,9 +78,7 @@ public class Connection {
 			}
 			
 			//System.out.println(responseContent.toString());
-			parse(responseContent.toString());
-		
-		
+			
 		}catch(MalformedURLException e) {
 			e.printStackTrace();
 		}catch(IOException e) {
@@ -88,6 +86,9 @@ public class Connection {
 		}finally {
 			connection.disconnect();
 		}
+		
+		//Calls the parse method to perse the .JSON response
+		parse(responseContent.toString());
 		
 	}
 	
@@ -104,8 +105,9 @@ public class Connection {
 		System.out.println("ID: "  + id);
 		System.out.println("\n\nIngredients \n");
 		String ingredients = food.getJSONObject("product").getString("ingredients_text_debug");
-		System.out.println(ingredients);
+		System.out.println("Ingredients:" +ingredients);
 		
+		//Calls the filterItems method to filter out the unsafe ingredients
 		filterItems(ingredients);
 		
 		
@@ -114,22 +116,25 @@ public class Connection {
 	}
 	
 	
-	//This method takes a string of ingredients and filters the items
+	//This method takes a string of ingredients and filters the unsafe items
 	static void filterItems(String ingredients) {	
 		
-		String [] unsafeItems = new String[2];
+		String [] unsafeItems = new String[3];
+		String unsafeItemsFound = "";
 		
 		unsafeItems[0]= "SUGAR";
 		unsafeItems[1]= "SPICES";
+		unsafeItems[2]= "CHILI";
 		
 		for(int i = 0; i< unsafeItems.length; i++)
 		{
 			if(ingredients.contains(unsafeItems[i]))
 			{
-				System.out.println("\nFound: " +unsafeItems[i] + " which is not safe to eat");
+				unsafeItemsFound += unsafeItems[i] + ", ";
 			}
 		}
 		
+		System.out.println("\nFound: " +unsafeItemsFound + "which is not safe to eat");
 	}
 	
 	/*public static String parse (String responseBody) {
