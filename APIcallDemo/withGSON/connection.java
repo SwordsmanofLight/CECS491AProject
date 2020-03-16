@@ -10,13 +10,10 @@ import java.net.HttpURLConnection;
 
 import java.io.BufferedReader;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-//import com.journaldev.json.model.Address;
-//import com.journaldev.json.model.Employee;
+
 
 public class Connection {
 	
