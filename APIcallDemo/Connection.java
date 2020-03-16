@@ -113,15 +113,14 @@ public class Connection {
 		
 		//System.out.println(food);
 		
-		int id = food.getInt("code");	
+		long id = food.getLong("code");	
 		System.out.println("ID: "  + id);
 		
 		System.out.println("\n\nIngredients \n");
 		String ingredients = food.getJSONObject("product").getString("ingredients_text_debug");
 		System.out.println(ingredients);
 		//System.out.println(food.getJSONObject("product").getString("ingredients_text_debug"));
-		
-		
+			
 		//JSONObject product = new JSONObject(food.getJSONObject("product"));
 		//System.out.println(product.);
 		
@@ -129,8 +128,28 @@ public class Connection {
 		//String x = product.getString("image_ingredients_url");
 		//System.out.println("ID: "  + x);
 		
+		filterItems(ingredients);
+		
 		
 		return null;
+		
+	}
+	
+	static void filterItems(String ingredients) {
+		
+		
+		String [] unsafeItems = new String[2];
+		
+		unsafeItems[0]= "SUGAR";
+		unsafeItems[1]= "SPICES";
+		
+		for(int i = 0; i< unsafeItems.length; i++)
+		{
+			if(ingredients.contains(unsafeItems[i]))
+			{
+				System.out.println("\nFound: " +unsafeItems[i] + " which is not safe to eat");
+			}
+		}
 		
 	}
 	
