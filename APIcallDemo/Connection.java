@@ -24,54 +24,61 @@ public class Connection {
 
 	public static void main(String[] args) {
 		
+		String url = "https://world.openfoodfacts.org/api/v0/product/737628064502.json";
+		
+		setUpConnection(url);
 	
+	}
+	
+	//This method takes the URL as parameter and sets up the connection
+	public static void setUpConnection (String link) {
+		
 		BufferedReader reader;
 		String line;
 		
 		StringBuffer responseContent = new StringBuffer();
-		try {
+		
+		try {			
+		
+			URL url = new URL(link);
 			
-		//URL url = new URL("https://jsonplaceholder.typicode.com/albums");
-		URL url = new URL("https://world.openfoodfacts.org/api/v0/product/737628064502.json");
-		
-		connection = (HttpURLConnection)url.openConnection();
-		
-		connection.setRequestMethod("GET");
-		connection.setConnectTimeout(10000);
-		connection.setReadTimeout(10000);
-		
-		int status = connection.getResponseCode();
-		 
-		//System.out.print(status);
-		
-		//Reader reads the error message
-		if(status > 299) {
+			connection = (HttpURLConnection)url.openConnection();			
+			connection.setRequestMethod("GET");
+			connection.setConnectTimeout(10000);
+			connection.setReadTimeout(10000);
 			
-			reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+			int status = connection.getResponseCode();
+			 
+			//System.out.print(status);
 			
-			while((line = reader.readLine()) != null) {
-				responseContent.append(line);
+			//Reader reads the error message
+			if(status > 299) {
+				
+				reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+				
+				while((line = reader.readLine()) != null) {
+					responseContent.append(line);
+				}
+				
+				reader.close();
 			}
 			
-			reader.close();
-		}
-		
-		//If connection is successful
-		
-		else {
+			//If connection is successful
 			
-			reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-			
-			while((line = reader.readLine()) != null) {
-				responseContent.append(line);
+			else {
+				
+				reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+				
+				while((line = reader.readLine()) != null) {
+					responseContent.append(line);
+				}
+				
+				reader.close();
+				
 			}
 			
-			reader.close();
-			
-		}
-		
-		//System.out.println(responseContent.toString());
-		parse(responseContent.toString());
+			//System.out.println(responseContent.toString());
+			parse(responseContent.toString());
 		
 		
 		}catch(MalformedURLException e) {
@@ -84,49 +91,20 @@ public class Connection {
 		
 	}
 	
-	/*public static String parse (String responseBody) {
-		
-		JSONArray albums = new JSONArray(responseBody);
-		
-		for(int i = 0; i< albums.length();i++) {
-			JSONObject album = albums.getJSONObject(i);
-			int id = album.getInt("id");
-			int userID = album.getInt("userId");
-			String title = album.getString("title");
-			
-			System.out.println("ID: " + id + " User ID: " + userID + " Title: " + title);
-		}
-		
-		return null;
-		
-	}*/
-	
-	
+	//This method takes a string of the response received from the API and parses it, and gets the ingredients
 	public static String parse (String responseBody) {
-		
 		
 		System.out.println("In parse");
 		
 		JSONObject food = new JSONObject(responseBody);
 		
-		
-		
 		//System.out.println(food);
 		
 		long id = food.getLong("code");	
 		System.out.println("ID: "  + id);
-		
 		System.out.println("\n\nIngredients \n");
 		String ingredients = food.getJSONObject("product").getString("ingredients_text_debug");
 		System.out.println(ingredients);
-		//System.out.println(food.getJSONObject("product").getString("ingredients_text_debug"));
-			
-		//JSONObject product = new JSONObject(food.getJSONObject("product"));
-		//System.out.println(product.);
-		
-		//System.out.println(product.get("image_ingredients_url"));
-		//String x = product.getString("image_ingredients_url");
-		//System.out.println("ID: "  + x);
 		
 		filterItems(ingredients);
 		
@@ -135,8 +113,9 @@ public class Connection {
 		
 	}
 	
-	static void filterItems(String ingredients) {
-		
+	
+	//This method takes a string of ingredients and filters the items
+	static void filterItems(String ingredients) {	
 		
 		String [] unsafeItems = new String[2];
 		
@@ -152,6 +131,23 @@ public class Connection {
 		}
 		
 	}
+	
+	/*public static String parse (String responseBody) {
+	
+	JSONArray albums = new JSONArray(responseBody);
+	
+	for(int i = 0; i< albums.length();i++) {
+		JSONObject album = albums.getJSONObject(i);
+		int id = album.getInt("id");
+		int userID = album.getInt("userId");
+		String title = album.getString("title");
+		
+		System.out.println("ID: " + id + " User ID: " + userID + " Title: " + title);
+	}
+	
+	return null;
+	
+}*/
 	
 
 }
