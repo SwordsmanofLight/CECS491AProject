@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutUs">
+
+    <TextView
+        android:id="@+id/about"
+        android:layout_width="match_parent"
+        android:layout_height="42sp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#65c69d"
+        android:text="About Us"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:text="Good Morning, In less than a semester, teams from here will join others around the world and you will be launching the largest battle against covid-19 in the history of CSULB, CSULB that name should have new meaning for all of us today. We cant be consumed by our petty differences anymore. We will be united in our common interests. Perhaps it's fate that its our graduation year, and you will once again be fighting for our freedom, not from tyranny, oppression, or persecution..but from annihilation . We're fighting for our right to live. To exist. And should we win the semester. 2020 will no longer be known as just a year, but as the year when CSULB declared in one voice: We will not go quietly into the night! We will not vanish without a fight! We're gonna to live on! We're going to survive! Today we celebrate our graduation Day!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/about" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="329dp"
+        android:layout_height="241dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="31dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:srcCompat="@drawable/team" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
