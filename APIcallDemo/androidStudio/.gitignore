@@ -1,0 +1,113 @@
+package com.example.healthybellyfinal;
+
+import android.util.Log;
+import android.widget.Toast;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class HttpHandler {
+
+    private static HttpURLConnection connection;
+    //private static final String TAG = HttpHandler.class.getSimpleName();
+
+    public HttpHandler()
+    {
+
+    }
+
+    //Returns the JSON response converted to String
+    public String setUpConnection (String link)
+    {
+        String response = " fml ";
+        BufferedReader reader;
+        String line, wtf = "Hello";
+
+        StringBuffer responseContent = new StringBuffer();
+
+        try
+        {
+            URL url = new URL(link);
+            //HttpURLConnection connect=(HttpURLConnection) url.openConnection();
+            //connect.setRequestMethod("GET");
+
+            connection = (HttpURLConnection)url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setConnectTimeout(50000);
+            connection.setReadTimeout(50000);
+
+            int status = connection.getResponseCode();
+
+            //InputStream in= new BufferedInputStream(connection.getInputStream());
+            //response = convertStreamToString(in);
+
+            if(status>299) {
+                reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+
+                while ((line = reader.readLine()) != null) {
+                    responseContent.append(line);
+                }
+
+                reader.close();
+            }
+
+            else {
+                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+                while ((line = reader.readLine()) != null) {
+                    responseContent.append(line);
+                }
+
+                reader.close();
+            }
+
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            connection.disconnect();
+        }
+
+
+        return  responseContent.toString();
+    }
+
+    //Converts JSON to String
+    /*
+    private static String convertStreamToString(InputStream is)
+    {
+
+        BufferedReader reader = new BufferedReader (new InputStreamReader(is));
+        StringBuilder sb=new StringBuilder();
+
+        String line;
+        try{
+            while((line=reader.readLine())!=null)
+            {
+                sb.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally
+        {
+            try{
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return sb.toString();
+    }
+ */
+
+
+}
