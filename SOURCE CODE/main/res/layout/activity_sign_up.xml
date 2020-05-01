@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="113dp"
+        tools:layout_editor_absoluteY="110dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout">
+
+            <TextView
+                android:id="@+id/EnterInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#65c69d"
+                android:paddingBottom="16dp"
+                android:text="Enter Your Information"
+                android:textAlignment="center"
+                android:textColor="#F1DFD5"
+                android:textSize="32sp"
+                tools:layout_conversion_absoluteHeight="43dp"
+                tools:layout_conversion_absoluteWidth="411dp"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <EditText
+                android:id="@+id/UserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Enter Username"
+                tools:layout_conversion_absoluteHeight="45dp"
+                tools:layout_editor_absoluteY="43dp"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_conversion_absoluteWidth="411dp" />
+
+            <EditText
+                android:id="@+id/Password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Enter Password" />
+
+            <EditText
+                android:id="@+id/ConfirmPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Confirm Password" />
+
+            <EditText
+                android:id="@+id/Email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Enter Email" />
+
+            <TextView
+                android:id="@+id/Allergies"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#65c69d"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="Allergies"
+                android:textColor="#F1DFD5"
+                android:textSize="32sp" />
+
+            <CheckBox
+                android:id="@+id/MilkCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="Milk"
+                android:onClick="selectItems"/>
+
+            <CheckBox
+                android:id="@+id/EggCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="Eggs"
+                android:onClick="selectItems"/>
+
+            <CheckBox
+                android:id="@+id/TreeNutCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="Tree Nuts"
+                android:onClick="selectItems"/>
+
+            <CheckBox
+                android:id="@+id/PeanutCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="Peanuts"
+                android:onClick="selectItems"/>
+
+            <CheckBox
+                android:id="@+id/ShellFishCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="ShellFish"
+                android:onClick="selectItems"/>
+
+            <CheckBox
+                android:id="@+id/WheatCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="Wheat"
+                android:onClick="selectItems"/>
+
+            <CheckBox
+                android:id="@+id/SoyCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="Soy"
+                android:onClick="selectItems"/>
+
+            <CheckBox
+                android:id="@+id/FishCheck"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:text="Fish"
+                android:onClick="selectItems"/>
+
+
+            <Button
+                android:id="@+id/Register"
+                android:layout_width="match_parent"
+                android:layout_height="92dp"
+                android:background="#EE864C"
+                android:paddingTop="24dp"
+                android:text="Register"
+                android:textColor="#F1DFD5"/>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
