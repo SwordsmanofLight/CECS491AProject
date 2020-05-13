@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,7 +18,8 @@
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textAlignment="center"/>
 
     <EditText
         android:id="@+id/barcode"
@@ -40,7 +42,9 @@
         android:id="@+id/seachButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginEnd="68dp"
         android:backgroundTint="#65c69d"
         android:text="Search"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,48 +52,50 @@
         app:layout_constraintTop_toBottomOf="@+id/barcode" />
 
     <TextView
+        android:id="@+id/FoodNameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:text="Scanned Item:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/seachButton"
+        app:layout_constraintTop_toBottomOf="@+id/seachButton"
+        />
+
+    <TextView
         android:id="@+id/FoodName"
-        android:layout_width="181dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="188dp"
-        android:layout_marginTop="52dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="30dp"
         android:hint="FoodName"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/FoodNameTitle"
         app:layout_constraintTop_toBottomOf="@+id/seachButton" />
 
     <TextView
         android:id="@+id/Result"
         android:layout_width="181dp"
         android:layout_height="160dp"
-        android:layout_marginStart="188dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="30dp"
         android:hint="Result"
-        android:textSize="15dp"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/FoodName" />
 
-    <TextView
-        android:id="@+id/FoodNameTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="312dp"
-        android:layout_marginEnd="32dp"
-        android:text="Scanned Item"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/FoodName"
-        app:layout_constraintTop_toBottomOf="@+id/searchtitle"/>
 
     <TextView
         android:id="@+id/resultTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="70dp"
         android:text="Result:"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/Result"
-        app:layout_constraintTop_toBottomOf="@+id/FoodNameTitle"/>
+        app:layout_constraintTop_toBottomOf="@+id/FoodNameTitle" />
 
     <ImageView
         android:id="@+id/imageView"

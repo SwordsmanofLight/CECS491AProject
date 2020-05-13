@@ -92,10 +92,6 @@ public class SignUp extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Password must be 6 or more characters!",Toast.LENGTH_SHORT).show();
                     correct=false;
                 }
-                if (Name.length() > 15) {
-                    Toast.makeText(getApplicationContext(),"Username must be less than 15 characters!",Toast.LENGTH_SHORT).show();
-                    correct=false;
-                }
 
                 if(correct)
                 {
@@ -126,7 +122,7 @@ public class SignUp extends AppCompatActivity {
                  documentReference.set(newUser).addOnSuccessListener(new OnSuccessListener<Void>() {
                      @Override
                      public void onSuccess(Void aVoid) {
-                         Log.d(TAG, "Profile Made-------------" + Name);
+                         Log.d(TAG, "Profile Made, USE EMAIL TO LOGIN" + Name);
                      }
                  });
              }

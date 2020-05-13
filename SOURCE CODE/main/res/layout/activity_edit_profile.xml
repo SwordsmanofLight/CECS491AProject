@@ -42,6 +42,7 @@
                 android:paddingBottom="16dp"
                 android:text="Allergies"
                 android:textColor="#F1DFD5"
+                android:textAlignment="center"
                 android:textSize="32sp" />
 
             <CheckBox

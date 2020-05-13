@@ -2,6 +2,7 @@ package com.example.healthybellyfinal;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,7 +29,7 @@ public class Search extends AppCompatActivity {
 
     private Button search;
     private String finalApiCall;
-    long inputBarcode;
+    private String inputBarcode;
     FirebaseFirestore fStore;
     FirebaseAuth fAuth;
     String allergiesList;
@@ -75,7 +76,13 @@ public class Search extends AppCompatActivity {
             "Swordfish", "Tilapia", "Trout", "Tuna"};
     final private String [] pregnantList = {"Alcohol", "Unpasteurized", "Raw alfalfa", "Raw clover",
             "Raw radish", "Raw sprout", "Raw Sprouts", "Organ meat", "raw egg", "raw eggs", "raw",
-            "raw meat", "raw fish", "shark", "swordfish", "king mackerel", "tuna", "mercury"};
+            "raw meat", "raw fish", "shark", "swordfish", "king mackerel", "tuna", "mercury", "mulethi",
+            "Licorice", "Bisphenol A", "BPA", "Biphenols", "ephedra", "angelica", "kava", "yohimbe",
+            "black cohosh", "blue cohosh", "dong quai", "borage oil", "pennyroyal", "mugwort",
+            "MSG", "Monosodium glutamate", "Quinoline Yellow", "E104", "Cochineal", "E120",
+            "Indigo Carmine", "E132", "Green S", "E142", "Ponceau 4R", "E124", "Allura Red AC", "E129",
+            "Erythrosine", "E127", "Patent Blue V", "E131", "Tartrazine", "E102", "Phthalates",
+            "Perfluoroalkyl Chemicals", "PFCs", "Perchlorate", "Nitrates", "Nitrites"};
 
 
 
@@ -119,8 +126,8 @@ public class Search extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Please enter a barcode", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                //Toast.makeText(getApplicationContext(),"Barcode: " + inputBarcode, Toast.LENGTH_SHORT).show();
-                    inputBarcode = Long.parseLong(Barcode.getText().toString());
+                    //Toast.makeText(getApplicationContext(),"Barcode: " + inputBarcode, Toast.LENGTH_SHORT).show();
+                    inputBarcode = Barcode.getText().toString();
                     fAuth = FirebaseAuth.getInstance();
                     fStore = FirebaseFirestore.getInstance();
                     userID = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
@@ -153,32 +160,38 @@ public class Search extends AppCompatActivity {
         protected Void doInBackground (Void... arg0){
 
             HttpHandler sh = new HttpHandler();
-            String url = "https://world.openfoodfacts.org/api/v0/product/" + String.valueOf(inputBarcode) + ".json";
+            String url = "https://us.openfoodfacts.org/api/v0/product/" + (inputBarcode) + ".json";
 
-            //Stores the response received from API call in a string
-            String jsonToString=sh.makeServiceCall(url);
+            try {
+                //Stores the response received from API call in a string
+                String jsonToString = sh.makeServiceCall(url);
 
-            test = jsonToString;
+                test = jsonToString;
 
-            //If barcode is invalid
-            if(jsonToString.contains("product not found"))
+                //If barcode is invalid
+                if (jsonToString.contains("product not found")) {
+                    validBarcode = false;
+                }
+
+                //If barcode is valid, it parses the string and stores the ingredients and name in 2
+                //different string variables
+
+                else {
+
+                    JsonElement jelement = new JsonParser().parse(jsonToString);
+                    JsonObject jobject = jelement.getAsJsonObject();
+
+                    Log.e("j-element", jelement.toString());
+
+                    ingredients = jobject.getAsJsonObject("product")
+                            .get("ingredients_text_with_allergens").getAsString();
+                    itemName = jobject.getAsJsonObject("product")
+                            .get("product_name").getAsString();
+
+                }
+            }catch(Exception e)
             {
-                validBarcode = false;
-            }
-
-            //If barcode is valid, it parses the string and stores the ingredients and name in 2
-            //different string variables
-
-            else if(jsonToString != null)
-            {
-
-                JsonElement jelement = new JsonParser().parse(jsonToString);
-                JsonObject jobject = jelement.getAsJsonObject();
-
-                ingredients = jobject.getAsJsonObject("product").get("ingredients_text_debug").getAsString();
-                itemName = jobject.getAsJsonObject("product").get("generic_name").getAsString();
-
-            }
+                Log.e("do in background", e.getMessage());}
             return null;
         }
 

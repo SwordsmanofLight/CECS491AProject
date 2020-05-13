@@ -1,8 +1,16 @@
 <resources>
-    <string name="app_name">HealthyBellyFinal</string>
+    <string name="app_name">Healthy Belly</string>
     <string name="drawerOpen">drawerOpen</string>
     <string name="drawerClose">drawerClose</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="aboutUs">Healthy Belly Members:\nMohammad-Murtuza Bharoocha\nMateo Perez\nHassan Ishmam\nJosue Rodriguez\n\n\nConnect with Any of the Healthy Belly Members for Questions or Concerns</string>
+
+    <string name="mainmenu">Use the Navigation Menu on the Top Left To Access the menu\nTo return to the Main Menu, use the phone\'s native back button</string>
+    <string name="front_camera">Camera:\nSelect Camera to Scan Barcode</string>
+    <string name="front_search">Search:\nSelect Search to Manually input your Barcode Number</string>
+    <string name="front_profile">Profile:\nSelect Profile to Access Information Regarding your Profile</string>
+    <string name="front_logout">Log Out:\nSelect Log Out to Log Out of the Application</string>
 </resources>

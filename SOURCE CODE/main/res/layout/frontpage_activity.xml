@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:openDrawer="end"
+    android:id="@+id/drawer"
+    android:background="@color/c1"
+    tools:context=".FrontPageAct">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/c1" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/app"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:id="@+id/imageHB"
+            />
+
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="125dp"
+            android:textSize="30sp"
+            android:text="How to use"
+            android:layout_alignTop="@id/imageHB"
+            />
+
+        <TextView
+            android:id="@+id/nav_id"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:text="@string/mainmenu"
+            android:layout_alignTop="@id/textView"
+
+            />
+
+
+
+        <TextView
+            android:id="@+id/textViewcamera"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="textStart"
+            android:textSize="20sp"
+            android:text="@string/front_camera"
+            android:layout_alignTop="@id/nav_id"
+            />
+        <TextView
+            android:id="@+id/textViewsearch"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="textStart"
+            android:textSize="20sp"
+            android:text="@string/front_search"
+            android:layout_alignTop="@id/textViewcamera"
+
+            />
+        <TextView
+            android:id="@+id/textViewprofile"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="textStart"
+            android:textSize="20sp"
+            android:text="@string/front_profile"
+            android:layout_alignTop="@id/textViewsearch"
+            />
+        <TextView
+            android:id="@+id/textViewlogout"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="90dp"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="textStart"
+            android:textSize="20sp"
+            android:text="@string/front_logout"
+            android:layout_alignTop="@id/textViewprofile"
+            />
+
+
+
+
+
+    </RelativeLayout>
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:id="@+id/navigationView"
+        app:menu="@menu/menu_item"
+        app:headerLayout="@layout/header"
+        android:background="@color/c3"
+        android:layout_gravity="start"
+        app:itemTextColor="#fff"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>

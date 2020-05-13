@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".CameraV2">
+
+    <SurfaceView
+        android:id="@+id/surface_view"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="1dp"/>
+
+    <!--<TextView
+        android:id="@+id/barcode_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:layout_constraintTop_toBottomOf="@id/surface_view"
+        android:layout_marginTop="50dp"
+        android:text="Your Barcode will appear here"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:padding="5dp"/>-->
+
+    <TextView
+        android:id="@+id/FoodNameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:text="Scanned Item:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/seachButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/surface_view" />
+
+    <TextView
+        android:id="@+id/barcode_text"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="30dp"
+        android:hint="FoodName"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/FoodNameTitle"
+        app:layout_constraintTop_toBottomOf="@+id/surface_view" />
+
+    <TextView
+        android:id="@+id/Result"
+        android:layout_width="181dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="30dp"
+        android:hint="Result"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barcode_text" />
+
+
+    <TextView
+        android:id="@+id/resultTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="70dp"
+        android:text="Result:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/Result"
+        app:layout_constraintTop_toBottomOf="@+id/FoodNameTitle" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="116dp"
+        android:layout_height="113dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toStartOf="@+id/Result"
+        app:layout_constraintTop_toBottomOf="@+id/resultTitle"
+        app:srcCompat="@drawable/logo" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
